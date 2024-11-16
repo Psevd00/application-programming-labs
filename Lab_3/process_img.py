@@ -1,6 +1,7 @@
 import argparse
 import cv2
 import matplotlib.pyplot as plt
+
 from numpy import ndarray
 
 def arg_parser() -> tuple:
