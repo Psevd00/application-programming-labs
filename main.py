@@ -15,16 +15,17 @@ def main():
         print(df)
         print("Статистика изображений:")
         print(compute_image_statistics(df))
+        df_nf = df
         df=filter_images_by_size(df,args.max_width,args.max_height)
         print("Изображения после фильтрации по размеру:")
         print(df)
-        df=add_area_column(df)
+        add_area_column(df_nf)
         print("Колонка с площадью добавлена:")
-        print(df)
-        df=sort_by_area(df)
+        print(df_nf)
+        df_nf=sort_by_area(df_nf)
         print("DataFrame отсортирован по площади:")
-        print(df)
-        plot_area_distribution(df)
+        print(df_nf)
+        plot_area_distribution(df_nf)
     except Exception as e:(
         print(f'Error: {e}'))
 
