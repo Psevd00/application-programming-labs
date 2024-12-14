@@ -14,7 +14,7 @@ def create_dataframe(annotation_file: str) -> pd.DataFrame:
     return df
 
 
-def add_image_dimensions(df: pd.DataFrame) -> pd.DataFrame:
+def add_image_dimensions(df: pd.DataFrame) -> None:
     """
     Функция добавляет информацию о высоте, ширине и глубине изображений в DataFrame.
     :param df: DataFrame с аннотацией изображений
@@ -38,11 +38,9 @@ def add_image_dimensions(df: pd.DataFrame) -> pd.DataFrame:
             heights.append(None)
             widths.append(None)
             depths.append(None)
-            print(f"Ошибка при обработке изображения {abs_path}: {e}")
     df['Height'] = heights
     df['Width'] = widths
     df['Depths'] = depths
-    return df
 
 
 def compute_image_statistics(df: pd.DataFrame) -> pd.DataFrame:
@@ -73,7 +71,7 @@ def filter_images_by_size(df: pd.DataFrame, max_width: int, max_height: int) -> 
     return filtered_df
 
 
-def add_area_column(df: pd.DataFrame) -> pd.DataFrame:
+def add_area_column(df: pd.DataFrame) -> None:
     """
     Добавляет новый столбец с площадью изображения в DataFrame.
     :param df: DataFrame с аннотацией изображений, содержащий колонки 'Ширина' и 'Высота'
@@ -83,7 +81,7 @@ def add_area_column(df: pd.DataFrame) -> pd.DataFrame:
     if not all(col in df.columns for col in required_columns):
         raise ValueError(f"DataFrame должен содержать колонки: {', '.join(required_columns)}.")
     df['Area'] = df['Width'] * df['Height']
-    return df
+
 
 
 def sort_by_area(df: pd.DataFrame) -> pd.DataFrame:
@@ -99,7 +97,7 @@ def sort_by_area(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def create_hist(data: pd.Series):
-    hist=plt.hist(data, bins=25, color='green', edgecolor='black')
+    hist=plt.hist(data, bins=25, color='red', edgecolor='black')
     return hist
 
 
