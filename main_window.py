@@ -54,7 +54,7 @@ class MainWindow(QMainWindow):
             QMessageBox.warning(self, "Предупреждение", "Сначала загрузите файл аннотации.")
             return
         try:
-            image_path = self.image_iterator.next()
+            image_path = self.image_iterator.__next__()
             self.display_image(image_path)
         except StopIteration:
             QMessageBox.information(self, "Информация", "Изображения отсутствуют.")
