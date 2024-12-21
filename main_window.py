@@ -21,12 +21,12 @@ class MainWindow(QMainWindow):
         self.load_annotation_button = QPushButton('Загрузить файл аннотации')
         self.load_annotation_button.clicked.connect(self.load_annotation)
         self.layout.addWidget(self.load_annotation_button)
-        self.next_image_button = QPushButton('Следующее изображение')
-        self.next_image_button.clicked.connect(self.show_next_image)
-        self.layout.addWidget(self.next_image_button)
         self.image_label = QLabel()
         self.image_label.setAlignment(Qt.AlignCenter)
         self.layout.addWidget(self.image_label)
+        self.next_image_button = QPushButton('Следующее изображение')
+        self.next_image_button.clicked.connect(self.show_next_image)
+        self.layout.addWidget(self.next_image_button)
         self.image_iterator = None
 
 
@@ -54,7 +54,7 @@ class MainWindow(QMainWindow):
             QMessageBox.warning(self, "Предупреждение", "Сначала загрузите файл аннотации.")
             return
         try:
-            image_path = self.image_iterator.__next__()
+            image_path = next(self.image_iterator)
             self.display_image(image_path)
         except StopIteration:
             QMessageBox.information(self, "Информация", "Изображения отсутствуют.")
