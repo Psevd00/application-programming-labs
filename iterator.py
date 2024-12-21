@@ -21,7 +21,7 @@ class ImageIterator:
         return self
 
 
-    def next(self) -> str:
+    def __next__(self) -> str:
         """
         Эта функция получает следующий элемент из списка абсолютных путей к изображениям.
         :return: путь к текущему изображению
